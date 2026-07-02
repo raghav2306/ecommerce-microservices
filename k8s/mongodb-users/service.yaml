@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-users
+spec:
+  clusterIP: None  # Headless service — pods resolve directly by DNS
+  selector:
+    app: mongodb-users
+  ports:
+    - port: 27017
+      targetPort: 27017
