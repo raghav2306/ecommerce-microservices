@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package order;
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+  rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
+  rpc ListUserOrders (ListUserOrdersRequest) returns (ListUserOrdersResponse);
+  rpc CancelOrder (CancelOrderRequest) returns (CancelOrderResponse);
+  rpc UpdateOrderStatus (UpdateOrderStatusRequest) returns (UpdateOrderStatusResponse);
+}
+
+message OrderItem {
+  string productId = 1;
+  int32 quantity = 2;
+  double price = 3;
+}
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated OrderItem items = 2;
+}
+
+message CreateOrderResponse {
+  string orderId = 1;
+  string status = 2;
+  double totalAmount = 3;
+}
+
+message GetOrderRequest {
+  string orderId = 1;
+}
+
+message GetOrderResponse {
+  string orderId = 1;
+  string userId = 2;
+  repeated OrderItem items = 3;
+  string status = 4;
+  double totalAmount = 5;
+  string createdAt = 6;
+}
+
+message ListUserOrdersRequest {
+  string userId = 1;
+}
+
+message ListUserOrdersResponse {
+  repeated GetOrderResponse orders = 1;
+}
+
+message CancelOrderRequest {
+  string orderId = 1;
+  string userId = 2;
+}
+
+message CancelOrderResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UpdateOrderStatusRequest {
+  string orderId = 1;
+  string status = 2;
+}
+
+message UpdateOrderStatusResponse {
+  bool success = 1;
+  string status = 2;
+}
