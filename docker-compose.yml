@@ -15,7 +15,6 @@ services:
 
   mongo-users:
     image: mongo:6.0
-    platform: linux/arm64
     volumes:
       - mongo_users:/data/db
     healthcheck:
@@ -26,7 +25,6 @@ services:
 
   mongo-products:
     image: mongo:6.0
-    platform: linux/arm64
     volumes:
       - mongo_products:/data/db
     healthcheck:
@@ -37,7 +35,6 @@ services:
 
   mongo-orders:
     image: mongo:6.0
-    platform: linux/arm64
     volumes:
       - mongo_orders:/data/db
     healthcheck:
