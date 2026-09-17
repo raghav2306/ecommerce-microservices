@@ -18,7 +18,7 @@ const userProto = grpc.loadPackageDefinition(packageDef).user;
 
 async function main() {
   await mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/users");
-  console.log("Connected to MongoDB");
+  console.log("Connected to User-Service MongoDB");
 
   const server = new grpc.Server();
   server.addService(userProto.UserService.service, handlers);
